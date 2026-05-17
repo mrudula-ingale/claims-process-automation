@@ -1,0 +1,26 @@
+# Python-generated files
+build/
+dist/
+wheels/
+*.egg-info
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+
+# Environment variables
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data
+data/processed/
+data/reports/
+
+# OS
+.DS_Store
+Thumbs.db
