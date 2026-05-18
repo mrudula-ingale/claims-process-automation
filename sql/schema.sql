@@ -25,7 +25,7 @@ CREATE TABLE claims (
     claim_type TEXT NOT NULL,
     claim_amount REAL NOT NULL, 
     status TEXT NOT NULL,
-    submitetd_date DATE NOT NULL,
+    submitted_date DATE NOT NULL,
     closed_date DATE,
     priority TEXT NOT NULL,
 
