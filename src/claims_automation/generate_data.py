@@ -165,7 +165,7 @@ def create_claim_events(claims_df: pd.DataFrame) -> pd.DataFrame:
 
             event_id += 1
 
-        return pd.DataFrame(events)
+    return pd.DataFrame(events)
 
 
 def create_payments(claims_df: pd.DataFrame) -> pd.DataFrame:
