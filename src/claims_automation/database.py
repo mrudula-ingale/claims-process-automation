@@ -3,7 +3,7 @@ import sqlite3
 from claims_automation.config import DATABASE_PATH, SCHEMA_PATH
 
 
-def create_database():
+def create_database() -> None:
     """Create the SQLite database using the schema.sql file."""
     schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
 

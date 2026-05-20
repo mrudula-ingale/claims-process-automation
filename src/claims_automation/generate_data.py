@@ -7,8 +7,12 @@ from faker import Faker
 
 from claims_automation.config import DATABASE_PATH
 
+SEED = 42
+
 fake = Faker()
 
+Faker.seed(SEED)
+random.seed(SEED)
 
 DEPARTMENTS = [
     "Auto Claims",
@@ -24,16 +28,6 @@ CLAIM_TYPES = [
     "Water Damage",
     "Flight Cancellation",
     "Theft",
-]
-
-STATUSES = [
-    "submitted",
-    "under_review",
-    "documents_requested",
-    "approved",
-    "rejected",
-    "paid",
-    "closed",
 ]
 
 PRIORITIES = [
