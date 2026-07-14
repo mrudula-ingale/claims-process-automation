@@ -1,8 +1,10 @@
 # Claims Process Automation Dashboard
 
-An end-to-end **SQL + Python automation project** that simulates an insurance claims processing workflow using **SQLite, SQL analytics, automated reporting, and Streamlit dashboards**.
+An end-to-end **SQL + Python automation project** that simulates an insurance claims processing workflow using **PostgreSQL/Neon for deployment, SQLite for local development, SQL analytics, automated reporting, and Streamlit dashboards**.
 
 The project generates synthetic insurance claims data, automates KPI analysis through modular SQL queries, exports reports to Excel, and visualizes operational insights in an interactive dashboard.
+
+**Live Dashboard:** [claims-process-automation.streamlit.app](https://claims-process-automation-7xqfvxi8p6jwcmzcz6yztm.streamlit.app/)
 
 ---
 
@@ -20,7 +22,7 @@ Monitoring claim status, delays, department workload, approvals, and high-value 
 
 This project demonstrates a complete analytics pipeline:
 
-**Synthetic Data → SQLite Database → SQL Analytics → Excel Reports → Interactive Dashboard**
+**Synthetic Data -> PostgreSQL/SQLite Database -> SQL Analytics -> Excel Reports -> Interactive Dashboard**
 
 ---
 
@@ -132,6 +134,7 @@ Includes:
 - Python
 - SQL
 - SQLite
+- PostgreSQL / Neon
 - Pandas
 - Faker
 
@@ -154,7 +157,7 @@ claims-process-automation/
 ├── assets/screenshots/          # Dashboard screenshots
 │
 ├── data/
-│   ├── claims.db                # SQLite database
+│   ├── claims.db                # Local SQLite database fallback
 │   └── reports/                 # Excel KPI reports
 │
 ├── docs/
@@ -167,7 +170,7 @@ claims-process-automation/
 │
 ├── src/claims_automation/
 │   ├── config.py
-│   ├── database.py              # Create database
+│   ├── database.py              # Create and seed configured database
 │   ├── generate_data.py         # Generate synthetic data
 │   ├── query_manager.py         # SQL execution
 │   └── run_analysis.py          # Export Excel KPI reports
@@ -179,12 +182,12 @@ claims-process-automation/
 
 ### Folder Explanation
 
-- **`app/`** → Streamlit dashboard UI  
-- **`sql/queries/`** → Modular SQL KPI queries  
-- **`data/`** → SQLite database and exported reports  
-- **`src/claims_automation/`** → Python automation pipeline  
-- **`assets/screenshots/`** → README dashboard images  
-- **`docs/`** → Business process documentation  
+- **`app/`** -> Streamlit dashboard UI  
+- **`sql/queries/`** -> Modular SQL KPI queries  
+- **`data/`** -> Local SQLite fallback database and exported reports  
+- **`src/claims_automation/`** -> Python automation pipeline  
+- **`assets/screenshots/`** -> README dashboard images  
+- **`docs/`** -> Business process documentation  
 
 ---
 
@@ -231,7 +234,7 @@ Run:
 uv run python -m claims_automation.database
 ```
 
-This creates:
+This creates the local fallback database:
 
 ```text
 data/claims.db
@@ -260,7 +263,8 @@ This generates synthetic:
 - Claim events
 - Payments
 
-and inserts them into SQLite.
+and inserts them into the configured database. Locally this is SQLite; in
+deployment this can be PostgreSQL/Neon through `DATABASE_URL`.
 
 ---
 
