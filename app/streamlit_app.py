@@ -1,5 +1,6 @@
 import streamlit as st
 
+from claims_automation.database import ensure_database
 from claims_automation.query_manager import execute_query_from_file
 
 # --------------------------------------------------
@@ -11,6 +12,8 @@ st.set_page_config(
     page_title="Claims Process Automation Dashboard",
     layout="wide",
 )
+
+ensure_database()
 
 
 # --------------------------------------------------

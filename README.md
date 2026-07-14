@@ -302,6 +302,23 @@ http://localhost:8501
 
 ---
 
+## Deploy to Streamlit Community Cloud
+
+1. Push this repository to GitHub.
+2. Open [Streamlit Community Cloud](https://share.streamlit.io/).
+3. Create a new app using:
+
+```text
+Repository: mrudula-ingale/claims-process-automation
+Branch: main
+Main file path: app/streamlit_app.py
+```
+
+The dashboard creates and seeds `data/claims.db` automatically on first startup
+when the database file is not present in the hosted environment.
+
+---
+
 ## Example KPIs
 
 The dashboard tracks:
