@@ -306,7 +306,15 @@ http://localhost:8501
 
 1. Push this repository to GitHub.
 2. Open [Streamlit Community Cloud](https://share.streamlit.io/).
-3. Create a new app using:
+3. Create a managed PostgreSQL database using a provider such as Neon,
+   Supabase, Railway, Render, or your cloud provider.
+4. Add the database connection string to Streamlit app secrets:
+
+```toml
+DATABASE_URL = "postgresql+psycopg://user:password@host:5432/database"
+```
+
+5. Create a new app using:
 
 ```text
 Repository: mrudula-ingale/claims-process-automation
@@ -314,8 +322,9 @@ Branch: main
 Main file path: app/streamlit_app.py
 ```
 
-The dashboard creates and seeds `data/claims.db` automatically on first startup
-when the database file is not present in the hosted environment.
+When `DATABASE_URL` is configured, the dashboard stores its tables in the
+managed database. Without `DATABASE_URL`, it falls back to the local SQLite file
+at `data/claims.db`.
 
 ---
 

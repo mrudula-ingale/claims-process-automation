@@ -4,8 +4,9 @@ from datetime import timedelta
 
 import pandas as pd
 from faker import Faker
+from sqlalchemy import create_engine
 
-from claims_automation.config import DATABASE_PATH
+from claims_automation.config import DATABASE_PATH, DATABASE_URL
 
 SEED = 42
 
@@ -204,9 +205,16 @@ def load_dataframe_to_sqlite(
     events_df: pd.DataFrame,
     payments_df: pd.DataFrame,
 ) -> None:
-    """Load generated DataFrames into SQLite database."""
+    """Load generated DataFrames into the configured database."""
+    if DATABASE_URL:
+        engine = create_engine(DATABASE_URL)
 
-    with sqlite3.connect(database=DATABASE_PATH) as connection:
+        connection_manager = engine.begin()
+    else:
+        DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
+        connection_manager = sqlite3.connect(database=DATABASE_PATH)
+
+    with connection_manager as connection:
         customers_df.to_sql(
             name="customers",
             con=connection,

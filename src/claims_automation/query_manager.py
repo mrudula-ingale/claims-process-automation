@@ -2,8 +2,9 @@ import sqlite3
 from pathlib import Path
 
 import pandas as pd
+from sqlalchemy import create_engine
 
-from claims_automation.config import DATABASE_PATH, QUERIES_DIR
+from claims_automation.config import DATABASE_PATH, DATABASE_URL, QUERIES_DIR
 
 
 def load_sql_query(query_path: Path) -> str:
@@ -36,6 +37,12 @@ def execute_query(query: str) -> pd.DataFrame:
     """
     Execute one SQL query and return the result as a pandas DataFrame.
     """
+    if DATABASE_URL:
+        engine = create_engine(DATABASE_URL)
+
+        with engine.connect() as connection:
+            return pd.read_sql_query(query, connection)
+
     with sqlite3.connect(DATABASE_PATH) as connection:
         return pd.read_sql_query(query, connection)
 
